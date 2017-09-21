@@ -1,0 +1,477 @@
+/*    global and classes    */
+html, body {
+    margin: 0;
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+}
+.y-center {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.x-center {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.x-right {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+}
+
+* {
+    font-family: 'Open Sans' , sans-serif;
+
+}
+
+/*    login    */
+.login {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 20, 20, 0.7);
+}
+.login > form {
+    background-color: #f9f9f9;
+    height: 13rem;
+    width: 28rem;
+    flex-direction: column;
+    position: relative;
+    border-radius: 0.15rem;
+    box-shadow: 0 0 3rem black ;
+}
+.login h1 {
+    font-size: 1.2rem;
+    padding-left: 1rem;
+}
+.login label {
+    padding-left: 1rem;
+    font-size: 0.8rem;
+    color: #616161;
+    position: absolute;
+    left: 0rem;
+    bottom: 0.3rem;
+}
+.login input {
+    float: right;
+    margin-right: 2.5rem;
+    width: 19rem;
+    border-radius: 0.5rem;
+    border: none;
+    border: solid 0.03rem #d9d9d9;
+    outline: none;
+    padding: 0.2rem 0rem 0.2rem 0rem;
+    padding-left: 0.5rem;
+    font-weight: bold;
+}
+container {
+    padding-top: 1rem;
+    position: relative;
+}
+.buttons_of_login {
+    position: absolute;
+    right: 2.5rem;
+    bottom: 2.2rem;
+    float: right;
+}
+.login_anonymous {
+    background-color: #c1c1c1;
+    border: none;
+    color: #21282a;
+    padding: 0.2rem;
+    border-radius: 0.1rem;
+    float: right;
+    margin-right: 0.3rem;
+}
+.login_save {
+    border: none;
+    color: white;
+    background-color: limegreen;
+    padding: 0.2rem 2rem;
+    border-radius: 0.1rem;
+    float: right;
+}
+.login_anonymous:hover , .login_save:hover {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    cursor: hand;
+}
+
+/*    page header    */
+body > header {
+    background-color:#353744;
+    flex: 14;
+}
+body > header > img {
+    height: 80%;
+    margin: 0.75%;
+}
+
+
+/*    body    */
+body > section {
+    flex: 86;
+    display: flex;
+    flex-direction: row;
+}
+
+/*    nav    */
+nav {
+    float: left;
+    background-color: #61d290;
+    width: 17%;
+    flex: 18;
+}
+
+/*    main section    */
+section > section {
+    flex: 82;
+    display: flex;
+    flex-direction: column;
+    background-color: #f6f6f6;
+    padding: 0;
+}
+
+/*    main header    */
+section > section > header {
+    background-color: #f6f6f6;
+    flex: 10;
+    display: flex;
+    flex-direction: row;
+    overflow-y: hidden;
+}
+
+/*    list in main header    */
+dl {
+    flex: 10;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+
+}
+.main-right {
+    float: left;
+    margin-top: 2%;
+}
+.main-right:first-child  {
+    margin-right: 3%;
+}
+dd , dt {
+    flex: 25;
+    margin: 0;
+    padding: 0;
+    height: 3vmin;
+}
+dd {
+    font-size: 3vmin;
+    margin-right: 3vmin;
+}
+dd:nth-of-type(2) {
+    margin-right: 5vmin;
+}
+dt > img {
+    height: 100%;
+}
+
+/*     h1    */
+section > section > header > h1 {
+    margin: 0;
+    margin-left: 3%;
+    margin-top: 1%;
+    font-size: 3.5vh;
+    flex:90;
+    flex-direction: column;
+    color: #3b3b3b;
+}
+
+/*     main    */
+main {
+    word-wrap: break-word;
+    background-color: #f6f6f6;
+    flex: 70;
+    overflow-y: auto;
+
+}
+
+/*     messages    */
+main > ol {
+    overflow-y: auto;
+    height: 100%;
+    clear: both;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 2%;
+}
+.message {
+    background-color: #fff;
+    max-width: 80%;
+    border: 2px solid #dadada;
+    border-radius: 10px;
+    margin-left: 10px;
+    padding: 0.6%;
+}
+.message:hover {
+    background-color: #ebedec;
+    outline: none;
+}
+.message:hover button {
+    display: initial;
+    visibility: initial;
+}
+.message:focus {
+    background-color: #ebedec;
+    outline: hidden;
+}
+.message:focus button {
+    display: initial;
+    visibility: initial;
+}
+button:hover , button:focus {
+    outline: solid black 1px;
+}
+
+/*     message    */
+li {
+    display: -webkit-flex;
+    margin-top: 10px;
+}
+.meesage-img {
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+}
+.message-time {
+    margin-left: 5px;
+    color: #999999;
+    font-size: 0.7rem;
+}
+.name {
+    font-style: normal;
+    font-weight: bold;
+}
+section > p {
+    margin: 0;
+    padding: 0;
+    margin-top: 0.5rem;
+}
+/*
+.delete-message {
+    visibility: hidden;
+    background-color: inherit;
+    border: none;
+    background-image: url("../images/x-icon.png");
+    background-size: cover;
+    height: 0.6rem;
+    width: 0.6rem;
+    padding: 0;
+    float: right;
+    margin: 0.25rem;
+    margin-left: 0.5rem;
+}
+*/
+.u-visuallyHidden {
+    border: 0;
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    display: inline-block;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    width: 1px;
+    white-space: nowrap; /* 1 */
+}
+
+li section:active button, li section:focus button, li section:hover button,
+.u-visuallyHidden.u-focusable:active,
+.u-visuallyHidden.u-focusable:focus,
+.u-visuallyHidden.u-focusable:hover {
+    clip: auto;
+    -webkit-clip-path: none;
+    clip-path: none;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+    white-space: inherit;
+
+    /*visibility: hidden;*/
+    background-color: inherit;
+    border: none;
+    background-image: url("../images/x-icon.png");
+    background-size: cover;
+    height: 0.6rem;
+    width: 0.6rem;
+    padding: 0;
+    float: right;
+    margin: 0.25rem;
+    margin-left: 0.5rem;
+}
+
+/*     footer    */
+footer {
+    /*flex: 20;*/
+    background-color: #fff;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-top: solid 0.2vh #d9d9d9;
+}
+
+/*     form    */
+form {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+/*     new message    */
+
+.Growable {
+	position: relative;
+	border: 1px solid;
+	max-height: 300px;
+	overflow: hidden;
+	-webkit-scrollbar: red;
+}
+
+@media screen and (max-height: 429px) {
+    .Growable {
+    	max-height: 50vh;
+    }
+}
+
+.Growable textarea,
+.Growable pre {
+	margin: 0;
+	padding: 0;
+    width: 80vw;
+	box-sizing: border-box;
+	font-family: inherit;
+	font-size: inherit;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	padding: 0.5em;
+}
+
+.Growable textarea {
+	width: 100%;
+	resize: none;
+	border: none;
+
+	position: absolute;
+	top: 0; left: 0;
+	height: 100%;
+	overflow: visible;
+}
+
+/*
+form > textarea {
+    flex: 95;
+    height: 100%;
+    width: 100%;
+    resize: none;
+    border: none;
+    padding: 0.7rem;
+}
+*/
+.send-message {
+    background-color: inherit;
+    border: none;
+    background-image: url("../images/message.png");
+    background-size: cover;
+    height: 8vmin;
+    width: 8vmin;
+    padding: 0;
+    float: right;
+    margin-right: 3vmin;
+}
+form > input {
+    flex: 5;
+    height: 8vh;
+}
+
+/*****mobile*****/
+@media screen and (max-width: 638px)/* and (min-width: 320px)*/, screen and (max-height: 626 px) {
+    nav {
+        flex: 0;
+    }
+    body > section {
+        flex: 100;
+    }
+    .meesage-img {
+        height: 35px;
+        width: 35px;
+    }
+    section > p {
+        font-size: 0.75rem;
+    }
+    .name {
+        font-size: 0.75rem;
+    }
+
+
+    .login > form {
+        height: 90vh;
+        width: 90vw;
+        border-radius: 1.5%;
+        box-shadow: 0 0 3% black ;
+    }
+    .login h1 {
+        font-size: 4.5vh;
+        padding-left: 5vw;
+    }
+    .login label {
+        padding-left: 5vw;
+        font-size: 3vh;
+        left: 0vw;
+        bottom: 1vh;
+        position: inherit;
+        float: left;
+        width: 60vw;
+    }
+    .login input {
+        margin-right: 5vh;
+        width: 45vw;
+        float: left;
+        border-radius: 3vmin;
+        padding: 1vmin 1vmin 1vmin 2vmin;
+        margin-left: 5vw;
+        font-size: 3vh;
+        border: solid 0.1vmin #d9d9d9;
+    }
+    container {
+        padding-top: 3vh;
+        padding-bottom: 4vh;
+    }
+    .buttons_of_login {
+        float: right;
+        right: 2.5vw;
+        bottom: 2.2vh;
+    }
+    .login_anonymous {
+        font-size: 3vh;
+        padding: 0.5vh 2vw 0.5vh 2vw;
+        border-radius: 0.1vmin;
+        margin-right: 1vw;
+    }
+    .login_save {
+        font-size: 3vh;
+        padding: 0.5vh 4vw 0.5vh 4vw;
+        border-radius: 0.1vmin;
+        margin-right: 3vw;
+    }
+}
