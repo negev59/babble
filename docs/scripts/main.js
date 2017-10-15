@@ -4,7 +4,7 @@ window.Babble = {
         name: '',
         email: ''
     },
-    /* 1 */
+    /* when someone registeres to the site */
     register: function(userInfo) {
         console.log('register: '+JSON.stringify(userInfo));
         Babble.userInfo = userInfo;
@@ -25,12 +25,11 @@ window.Babble = {
             action: 'http://localhost:9000/login',
             callback: return_from_login
         });
-        /*
-        get the messages that send before the person login
-        get stats
-         */
-        Babble.getMessages(0, return_from_getMessages);
-        Babble.getStats(return_from_getStats);
+
+        Babble.getMessages(0, return_from_getMessages);//get the messages which were sent before the person login
+        //and add request for get messages in the future
+        Babble.getStats(return_from_getStats);//get the data of stats
+        //and add request for get stats in the future
     },
     //when a men refreshes
     logout: function() {
@@ -48,6 +47,7 @@ window.Babble = {
     },
     postMessage: function(message,callback) {
         message.message = message.message.replace(/(?:\r\n|\r|\n)/g, '<br />');
+        //replace enter with br, for display.
         request({
             method: 'POST',
             action: 'http://localhost:9000/messages',
@@ -55,6 +55,7 @@ window.Babble = {
             callback: callback
         });
     },
+    //the counter means how many messages I have
     getMessages: function(counter ,callback) {
         console.log('get messsages with counter: ' + counter);
         request({
@@ -63,6 +64,7 @@ window.Babble = {
             callback: callback
         });
     },
+    //with the ID of the message which we wan to delete
     deleteMessage: function(id, callback) {
         request({
             method: 'DELETE',
@@ -70,6 +72,7 @@ window.Babble = {
             callback: callback
         });
     },
+    //for me to test errors
     test: function(method, action, data) {
         request({
             method: method,
@@ -78,6 +81,7 @@ window.Babble = {
             callback: print
         });
     },
+    //the function runs when the page load
     begin: function() {
         /* check if babble is already exist */
         if (localStorage.getItem('babble')) {
@@ -111,7 +115,7 @@ window.Babble = {
 }
 
 Babble.begin();
-
+//event lisiner on the butten of send message
 function PostMessages() {
     var form = document.querySelector('footer form');
     if (form) {
@@ -177,7 +181,7 @@ function GetFormContent(form) {
     return res;
 }
 
-/* login */
+/* I got the stats, and I display them for the user */
 function return_from_login(e) {
     console.log('login');
     var data = e;
@@ -195,13 +199,14 @@ function logout() {
 function return_from_getMessages(e) {
     var data = e;
     var i = 0;
-
+    //there is no change and the request was answered for prevent ampty request
     if(e.function === 'no change') {
         console.log('No Change');
         var counter = getCounter();
         Babble.getMessages(counter, return_from_getMessages);
         return;
     }
+    //someone delete message
     else if(e.function === 'delete') {
         console.log('Delete');
         if(document.querySelector('ol')) {
@@ -215,6 +220,7 @@ function return_from_getMessages(e) {
             }
         }
     }
+    //someone send message
     else {
         console.log('Add Message');
         var messages = e.messages;
@@ -225,10 +231,12 @@ function return_from_getMessages(e) {
         }
     }
     delete_function();
-    var counter = getCounter();
-    Babble.getMessages(counter, return_from_getMessages);
+    //there is new message, I add new event lisiner on theme
+    var counter = getCounter(); //How many messages I have
+    Babble.getMessages(counter, return_from_getMessages); //recall
 }
 
+//get num of messages I have
 function getCounter() {
     if(document.querySelectorAll('li') !== undefined) {
         console.log('the counter is: ' + document.querySelectorAll('li').length);
@@ -237,12 +245,7 @@ function getCounter() {
     return 0;
 }
 
-function isDelete(data) {
-    console.log('Delete');
-    return data.length < getCounter() ;
-}
-
-/* get Stats */
+/* update the data on the site and recall */
 function return_from_getStats(e) {
     var data = e;
     console.log('messages: ' + data.messages + ' , users: ' + data.users);
@@ -256,6 +259,7 @@ var return_from_delete_message = function(e) {
     console.log('delete message');
 }
 
+//add event lisiners on the messages (if the person will delete the message)
 function delete_function() {
     var lis = document.querySelectorAll('li');
     for(var i= 0; i<lis.length; i++) {
@@ -273,7 +277,7 @@ function delete_by_ID(id, index) {
         Babble.deleteMessage(id, return_from_delete_message);
     }
 }
-
+//get the real display of the time
 function getTime(n_time) {
     var time = new Date();
     n_time = n_time/1000;
