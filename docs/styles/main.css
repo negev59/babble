@@ -74,7 +74,7 @@ body {
     padding-left: 0.5rem;
     font-weight: bold;
 }
-container {
+div {
     padding-top: 1rem;
     position: relative;
 }
@@ -465,7 +465,7 @@ form > input {
         height: auto;
         padding-bottom: 1rem;
     }
-    container {
+    div {
         padding-top: 0;
     }
     .Section--login label {
@@ -552,7 +552,7 @@ form > input {
         border: solid 0.5vmin black;
 
     }
-    container {
+    div {
         padding-top: 3vh;
         padding-bottom: 4vh;
     }
