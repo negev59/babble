@@ -4,6 +4,7 @@ window.Babble = {
         name: '',
         email: ''
     },
+    /* 1 */
     register: function(userInfo) {
         console.log('register: '+JSON.stringify(userInfo));
         Babble.userInfo = userInfo;
@@ -13,6 +14,7 @@ window.Babble = {
         }));
         Babble.login();
     },
+    /* add event lisiner on beforeunload */
     login: function() {
         window.addEventListener("beforeunload" , function(e) {
             e.preventDefault();
@@ -23,9 +25,14 @@ window.Babble = {
             action: 'http://localhost:9000/login',
             callback: return_from_login
         });
+        /*
+        get the messages that send before the person login
+        get stats
+         */
         Babble.getMessages(0, return_from_getMessages);
         Babble.getStats(return_from_getStats);
     },
+    //when a men refreshes
     logout: function() {
         request({
             method: 'POST',
@@ -40,6 +47,7 @@ window.Babble = {
         });
     },
     postMessage: function(message,callback) {
+        message.message = message.message.replace(/(?:\r\n|\r|\n)/g, '<br />');
         request({
             method: 'POST',
             action: 'http://localhost:9000/messages',
@@ -69,32 +77,41 @@ window.Babble = {
             data: data,
             callback: print
         });
+    },
+    begin: function() {
+        /* check if babble is already exist */
+        if (localStorage.getItem('babble')) {
+            var babble = JSON.parse(localStorage.getItem('babble'));
+            Babble.userInfo = babble.userInfo;
+        } else {
+            var babble = {
+                currentMessage: '',
+                userInfo: Babble.userInfo
+            };
+            localStorage.setItem('babble',JSON.stringify(babble));
+        }
+        if (!IsAnonymous()) {
+            HideSectionLogin();
+            Babble.login();
+        }
+        /* Event Listener on login form */
+        document.addEventListener('submit',function(e) {
+            e.preventDefault();
+        });
+        var form = document.querySelector('.Section--login form');
+        if (form) {
+            form.addEventListener('submit',function(e) {
+                e.preventDefault();
+            });
+        }
+        PostMessages();
+        // Based on: https://alistapart.com/article/expanding-text-areas-made-elegant
+        makeGrowable(document.querySelector('.js-growable'));
     }
 }
 
-/* check if babble is already exist */
-if (localStorage.getItem('babble')) {
-    var babble = JSON.parse(localStorage.getItem('babble'));
-    Babble.userInfo = babble.userInfo;
-} else {
-    var babble = {
-        currentMessage: '',
-        userInfo: Babble.userInfo
-    };
-    localStorage.setItem('babble',JSON.stringify(babble));
-}
-if (!IsAnonymous()) {
-    HideSectionLogin();
-    Babble.login();
-}
-/* Event Listener on login form */
-var form = document.querySelector('.login form');
-if (form) {
-    form.addEventListener('submit',function(e) {
-        e.preventDefault();
-    });
-}
-PostMessages();
+Babble.begin();
+
 function PostMessages() {
     var form = document.querySelector('footer form');
     if (form) {
@@ -118,7 +135,7 @@ function after_post_message(e) {
 
 /* register regular and anonymous */
 function register() {
-    var form = document.querySelector('.login form');
+    var form = document.querySelector('.Section--login form');
     if (!form) { return; }
     var userInfo = GetFormContent(form);
     HideSectionLogin();
@@ -139,7 +156,7 @@ function print(e) {
 }
 
 function HideSectionLogin() {
-    var section = document.querySelector('.login');
+    var section = document.querySelector('.Section--login');
     if (section) {
         section.style.display = 'none';
     }
@@ -239,7 +256,7 @@ var return_from_delete_message = function(e) {
     console.log('delete message');
 }
 
-var delete_function = function() {
+function delete_function() {
     var lis = document.querySelectorAll('li');
     for(var i= 0; i<lis.length; i++) {
         button = lis[i].querySelector('button');
@@ -257,12 +274,27 @@ function delete_by_ID(id, index) {
     }
 }
 
+function getTime(n_time) {
+    var time = new Date();
+    n_time = n_time/1000;
+    n_time = (n_time - time.getTimezoneOffset() * 60);
+    var min = parseInt((n_time/60)%60);
+    var hour = parseInt((n_time/(60*60))%24);
 
+    if(min<10) {
+        min = '0'+min;
+    }
+    if(hour<10) {
+        hour = '0'+hour;
+    }
+    return hour+':'+min;
+}
 /* add message */
 function add_message(message) {
+    message.timestamp = getTime(message.timestamp);
     var m =
      '<li>'
-     +  '<span>' + message.id + '</span>'
+     +  '<span style="display: none;">' + message.id + '</span>'
      +   '<img class="meesage-img" src="';
      m += message.image + '" alt="">'
      +   '<section tabindex="2" class="message">'
@@ -305,10 +337,6 @@ function request(props) {
     xhr.send(props.data);
 }
 
-// Based on: https://alistapart.com/article/expanding-text-areas-made-elegant
-
-makeGrowable(document.querySelector('.js-growable'));
-
 
 function makeGrowable(container) {
 	var area = container.querySelector('textarea');
@@ -316,4 +344,10 @@ function makeGrowable(container) {
 	area.addEventListener('input', function(e) {
 		clone.textContent = area.value;
 	});
+    var form = document.querySelector('footer form');
+    form.addEventListener('submit',function(e) {
+        e.preventDefault();
+		area.value = '';
+        clone.innerHTML = '';
+    })
 }
