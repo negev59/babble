@@ -7,19 +7,19 @@ body {
     display: flex;
     flex-direction: column;
 }
-.y-center {
+.u-yCenter {
     display: -webkit-flex;
     display: flex;
     -webkit-align-items: center;
     align-items: center;
 }
-.x-center {
+.u-xCenter {
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: center;
     justify-content: center;
 }
-.x-right {
+.u-xRight {
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: flex-end;
@@ -32,13 +32,13 @@ body {
 }
 
 /*    login    */
-.login {
+.Section--login {
     position: fixed;
     height: 100%;
     width: 100%;
     background-color: rgba(0, 20, 20, 0.7);
 }
-.login > form {
+.Section--login > form {
     background-color: #f9f9f9;
     height: 13rem;
     width: 28rem;
@@ -47,11 +47,11 @@ body {
     border-radius: 0.15rem;
     box-shadow: 0 0 3rem black ;
 }
-.login h1 {
+.Section--login h1 {
     font-size: 1.2rem;
     padding-left: 1rem;
 }
-.login label {
+.Section--login label {
     padding-left: 1rem;
     font-size: 0.8rem;
     color: #616161;
@@ -59,13 +59,16 @@ body {
     left: 0rem;
     bottom: 0.3rem;
 }
-.login input {
+.Section--login input {
     float: right;
+    display: block;
     margin-right: 2.5rem;
     width: 19rem;
     border-radius: 0.5rem;
     border: none;
-    border: solid 0.03rem #d9d9d9;
+    /*border: solid 0.03rem #d9d9d9;*/
+    border: solid 0.5vmin black;
+
     outline: none;
     padding: 0.2rem 0rem 0.2rem 0rem;
     padding-left: 0.5rem;
@@ -76,29 +79,29 @@ container {
     position: relative;
 }
 .buttons_of_login {
+    float: right;
     position: absolute;
     right: 2.5rem;
     bottom: 2.2rem;
-    float: right;
 }
-.login_anonymous {
+.Button--loginAnonymous {
+    float: right;
     background-color: #c1c1c1;
     border: none;
     color: #21282a;
     padding: 0.2rem;
     border-radius: 0.1rem;
-    float: right;
     margin-right: 0.3rem;
 }
-.login_save {
+.Button--loginSave {
+    float: right;
     border: none;
     color: white;
     background-color: limegreen;
     padding: 0.2rem 2rem;
     border-radius: 0.1rem;
-    float: right;
 }
-.login_anonymous:hover , .login_save:hover {
+.Button--loginAnonymous:hover , .Button--loginSave:hover {
     outline: none;
     border: none;
     cursor: pointer;
@@ -160,11 +163,11 @@ dl {
     width: 100%;
 
 }
-.main-right {
+.Img--mainRight {
     float: left;
     margin-top: 2%;
 }
-.main-right:first-child  {
+.Img--mainRight:first-child  {
     margin-right: 3%;
 }
 dd , dt {
@@ -238,6 +241,7 @@ main > ol {
     display: initial;
     visibility: initial;
 }
+
 button:hover , button:focus {
     outline: solid black 1px;
 }
@@ -342,10 +346,15 @@ form {
 
 .Growable {
 	position: relative;
-	border: 1px solid;
+    border: none;
+    outline: none;
 	max-height: 300px;
 	overflow: hidden;
 	-webkit-scrollbar: red;
+}
+
+.Growable *:focus {
+    outline: none;
 }
 
 @media screen and (max-height: 429px) {
@@ -388,7 +397,7 @@ form > textarea {
     padding: 0.7rem;
 }
 */
-.send-message {
+.Button--sendMessage {
     background-color: inherit;
     border: none;
     background-image: url("../images/message.png");
@@ -399,13 +408,102 @@ form > textarea {
     float: right;
     margin-right: 3vmin;
 }
+.Button--sendMessage:focus , .Button--sendMessage:hover {
+    box-sizing: border-box;
+    border-radius: 4vmin;
+    border: solid black 0.15vmin;
+    outline: none;
+}
 form > input {
     flex: 5;
     height: 8vh;
 }
 
+@media screen and (max-width: 320px) {
+    section > section > header > h1 {
+    font-size: 3.5vmin;
+}
+    header>img {
+        box-sizing: border-box;
+        max-width: 100%;
+    }
+    section>header {
+        height: auto;
+    }
+    dl,dt,dd,section>header {
+        position: static;
+        float: none;
+        display: block !important;
+    }
+    dt,dd {
+        margin-top: 0;
+        margin-right: 0;
+        margin-left: 2%;
+    }
+    head>title {
+        max-width: 100%;
+    }
+    li {
+        position: static;
+        float: none;
+        display: block;
+    }
+    .meesage-img {
+        position: static;
+        float: none;
+        display: block;
+    }
+    .message {
+        box-sizing: border-box;
+        max-width: 80vw;
+        position: static;
+        float: none;
+        display: block;
+    }
+    .Section--login form {
+        width: 90vw;
+        height: auto;
+        padding-bottom: 1rem;
+    }
+    container {
+        padding-top: 0;
+    }
+    .Section--login label {
+        position: static;
+        float: none;
+        display: block;
+    }
+    .Section--login input {
+        box-sizing: border-box;
+        position: static;
+        float: none;
+        display: block;
+        margin: 0.3rem 0 0.5rem 0.8rem;
+        border: solid 0.5vmin black;
+        width: 70vw;
+    }
+    .buttons_of_login {
+        margin-left: 0.8rem;
+        position: static;
+        display: block;
+        float: none;
+    }
+    .Button--loginAnonymous {
+        position: static;
+        display: block;
+        float: none;
+    }
+    .Button--loginSave {
+        margin: 0.3rem 0;
+        display: block;
+        position: static;
+        float: none;
+    }
+
+}
+
 /*****mobile*****/
-@media screen and (max-width: 638px)/* and (min-width: 320px)*/, screen and (max-height: 626 px) {
+@media screen and (max-width: 638px) and (min-width: 320px) {
     nav {
         flex: 0;
     }
@@ -424,34 +522,35 @@ form > input {
     }
 
 
-    .login > form {
+    .Section--login > form {
         height: 90vh;
         width: 90vw;
         border-radius: 1.5%;
         box-shadow: 0 0 3% black ;
     }
-    .login h1 {
+    .Section--login h1 {
         font-size: 4.5vh;
         padding-left: 5vw;
     }
-    .login label {
+    .Section--login label {
         padding-left: 5vw;
         font-size: 3vh;
         left: 0vw;
         bottom: 1vh;
         position: inherit;
-        float: left;
+        /*float: left;*/
         width: 60vw;
     }
-    .login input {
+    .Section--login input {
         margin-right: 5vh;
         width: 45vw;
-        float: left;
+        /*float: left;*/
         border-radius: 3vmin;
         padding: 1vmin 1vmin 1vmin 2vmin;
         margin-left: 5vw;
         font-size: 3vh;
-        border: solid 0.1vmin #d9d9d9;
+        border: solid 0.5vmin black;
+
     }
     container {
         padding-top: 3vh;
@@ -462,16 +561,20 @@ form > input {
         right: 2.5vw;
         bottom: 2.2vh;
     }
-    .login_anonymous {
+    .Button--loginAnonymous {
         font-size: 3vh;
         padding: 0.5vh 2vw 0.5vh 2vw;
         border-radius: 0.1vmin;
         margin-right: 1vw;
     }
-    .login_save {
+    .Button--loginSave {
         font-size: 3vh;
         padding: 0.5vh 4vw 0.5vh 4vw;
         border-radius: 0.1vmin;
         margin-right: 3vw;
+    }
+    .Growable textarea,
+    .Growable pre {
+        width: 88vw;
     }
 }
