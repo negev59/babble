@@ -11,7 +11,7 @@
 
 <body>
     <header class="u-yCenter">
-        <h1 aria-label="Babble Talk freely."></h1>
+        <h1 class="u-visuallyHidden">Babble Talk freely.</h1>
         <img src="images/logo.png" alt="Babble Talk freely.">
     </header>
     <section>
@@ -79,13 +79,13 @@
                 </ol>
             </main>
             <footer>
-                <form class="u-yCenter" action="">
+                <form class="u-yCenter">
                     <div class="Growable js-growable">
                         <pre><span></span><br></pre>
                         <textarea placeholder="please write your message here"></textarea>
                     </div>
                     <!--                    <textarea name="" id="" cols="" rows=""></textarea> -->
-                    <button class="Button--sendMessage"></button>
+                    <button class="Button--sendMessage" aria-label="Send Message"></button>
                 </form>
             </footer>
         </section>
@@ -93,18 +93,18 @@
     <section class="Section--login u-yCenter u-xCenter">
         <form action="http://localhost:9000" method="POST">
             <h1>Who are you?</h1>
-            <container>
+            <div>
                 <label for="full_name">Full name:</label>
-                <input type="text" name="name">
-            </container>
-            <container>
+                <input id="full_name" type="text" name="name">
+            </div>
+            <div>
                 <label for="email">Email:</label>
-                <input type="email" name="email">
-            </container>
-            <container class="buttons_of_login">
+                <input id="email" type="email" name="email">
+            </div>
+            <div class="buttons_of_login">
                 <button onclick="register();" class="Button--loginSave">Save</button>
                 <button onclick="register_anonymous();" class="Button--loginAnonymous">Stay anonymous</button>
-            </container>
+            </div>
         </form>
     </section>
     <script src="scripts/main.js"></script>
