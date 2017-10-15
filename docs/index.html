@@ -10,25 +10,25 @@
 </head>
 
 <body>
-    <header class="y-center">
+    <header class="u-yCenter">
         <h1 aria-label="Babble Talk freely."></h1>
         <img src="images/logo.png" alt="Babble Talk freely.">
     </header>
     <section>
         <nav></nav>
         <section>
-            <header class="y-center">
+            <header class="u-yCenter">
                 <h1>Vegans</h1>
-                <dl class="y-center">
-                    <dt class="x-right y-center">
-                        <img class="main-right" src="images/icon_message.png" alt="num of peoples">
+                <dl class="u-yCenter">
+                    <dt class="u-xRight u-yCenter">
+                        <img class="Img--mainRight" src="images/icon_message.png" alt="num of peoples">
                     </dt>
-                    <dd id="num-of-messages" class="y-center">
+                    <dd id="num-of-messages" class="u-yCenter">
                     </dd>
-                    <dt class="x-right y-center">
-                        <img class="main-right" src="images/man.png" alt="num of messages">
+                    <dt class="u-xRight u-yCenter">
+                        <img class="Img--mainRight" src="images/man.png" alt="num of messages">
                     </dt>
-                    <dd id="num-of-users" class="y-center">
+                    <dd id="num-of-users" class="u-yCenter">
                     </dd>
                 </dl>
             </header>
@@ -79,18 +79,18 @@
                 </ol>
             </main>
             <footer>
-                <form class="y-center" action="">
+                <form class="u-yCenter" action="">
                     <div class="Growable js-growable">
                         <pre><span></span><br></pre>
-                        <textarea></textarea>
+                        <textarea placeholder="please write your message here"></textarea>
                     </div>
                     <!--                    <textarea name="" id="" cols="" rows=""></textarea> -->
-                    <button class="send-message"></button>
+                    <button class="Button--sendMessage"></button>
                 </form>
             </footer>
         </section>
     </section>
-    <section class="login y-center x-center">
+    <section class="Section--login u-yCenter u-xCenter">
         <form action="http://localhost:9000" method="POST">
             <h1>Who are you?</h1>
             <container>
@@ -102,8 +102,8 @@
                 <input type="email" name="email">
             </container>
             <container class="buttons_of_login">
-                <button onclick="register();" class="login_save">Save</button>
-                <button onclick="register_anonymous();" class="login_anonymous">Stay anonymous</button>
+                <button onclick="register();" class="Button--loginSave">Save</button>
+                <button onclick="register_anonymous();" class="Button--loginAnonymous">Stay anonymous</button>
             </container>
         </form>
     </section>
